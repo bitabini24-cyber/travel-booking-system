@@ -1,0 +1,321 @@
+/* ===== IMAGE 360 HOVER + DETAIL MODAL ===== */
+
+/* ── Wrapper added by JS around every card image ── */
+.img-360-wrap {
+  position: relative;
+  overflow: hidden;
+  cursor: none; /* hide default cursor */
+}
+
+/* ── Custom rotating cursor ── */
+.img-360-wrap::after {
+  content: '↻ 360°';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,.3);
+  pointer-events: none;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+  opacity: 0;
+  z-index: 10;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.img-360-wrap:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* ── The image itself rotates on hover ── */
+.img-360-wrap img {
+  transition: transform 1.2s cubic-bezier(.25,.46,.45,.94), filter .4s ease;
+  transform-origin: center center;
+  will-change: transform;
+}
+.img-360-wrap:hover img {
+  transform: scale(1.08) rotate(4deg);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* ── View Detail overlay button ── */
+.img-360-btn {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: .78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .25s;
+  opacity: 0;
+  z-index: 11;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(124,58,237,.5);
+  letter-spacing: .3px;
+}
+.img-360-wrap:hover .img-360-btn {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+.img-360-btn:hover {
+  box-shadow: 0 10px 30px rgba(124,58,237,.7);
+  transform: translateX(-50%) translateY(-2px) !important;
+}
+
+/* ── Spinning ring on cursor position ── */
+.cursor-ring {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border: 2.5px solid rgba(124,58,237,.8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s, opacity .2s;
+  animation: ringRotate 1.5s linear infinite;
+  display: none;
+}
+.cursor-ring.active { display: block; }
+@keyframes ringRotate {
+  from { transform: translate(-50%,-50%) rotate(0deg); }
+  to   { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+/* ===== DETAIL MODAL ===== */
+.detail-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(16px);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.detail-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.detail-modal {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 24px;
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(.88) translateY(30px);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 40px 120px rgba(0,0,0,.8);
+  position: relative;
+}
+.detail-modal-overlay.open .detail-modal {
+  transform: scale(1) translateY(0);
+}
+
+.dm-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all .2s;
+}
+.dm-close:hover { background: rgba(236,72,153,.5); transform: rotate(90deg); }
+
+.dm-img-wrap {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+.dm-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+.dm-img-wrap:hover img { transform: scale(1.06); }
+.dm-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 50%);
+}
+.dm-img-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: .75rem;
+  font-weight: 800;
+}
+.dm-img-rating {
+  position: absolute;
+  top: 16px;
+  right: 60px;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  color: #f59e0b;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: .8rem;
+  font-weight: 800;
+  border: 1px solid rgba(245,158,11,.3);
+}
+
+.dm-body { padding: 28px 32px 32px; }
+
+.dm-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.dm-loc {
+  color: rgba(255,255,255,.5);
+  font-size: .9rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dm-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dm-hl {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+.dm-hl-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.dm-hl-val {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.dm-hl-lbl { font-size: .7rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .8px; }
+
+.dm-desc {
+  color: rgba(255,255,255,.65);
+  font-size: .95rem;
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+
+.dm-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.dm-amenity {
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.25);
+  color: #a78bfa;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+.dm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.dm-price {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #a78bfa, #f9a8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.dm-price-sub { font-size: .8rem; color: rgba(255,255,255,.4); -webkit-text-fill-color: rgba(255,255,255,.4); margin-top: 4px; }
+.dm-actions { display: flex; gap: 12px; }
+.dm-btn-book {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: .95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: inherit;
+  box-shadow: 0 8px 24px rgba(124,58,237,.4);
+}
+.dm-btn-book:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(124,58,237,.6); }
+.dm-btn-view {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: inherit;
+}
+.dm-btn-view:hover { background: rgba(255,255,255,.15); }
+
+@media(max-width:640px) {
+  .dm-highlights { grid-template-columns: repeat(2,1fr); }
+  .dm-body { padding: 20px; }
+  .dm-img-wrap { height: 220px; }
+  .dm-title { font-size: 1.4rem; }
+}
+
+#map, #map *, .leaflet-container, .leaflet-container * { transform: none !important; filter: none !important; cursor: default !important; }
+.leaflet-tile { transform: none !important; }

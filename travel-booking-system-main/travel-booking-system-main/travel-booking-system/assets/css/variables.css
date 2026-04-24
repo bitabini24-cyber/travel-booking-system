@@ -1,0 +1,69 @@
+:root {
+    /* ── Core dark bg / card ── */
+    --dark-bg:       #0f0f0f;
+    --dark-card:     #1a1a1a;
+    --dark-card-2:   #222222;
+    --dark-border:   rgba(255,255,255,0.08);
+
+    /* Brand Colors */
+    --primary:       #7C3AED;
+    --primary-light: #A78BFA;
+    --primary-dark:  #5B21B6;
+    --secondary:     #EC4899;
+    --secondary-light:#F9A8D4;
+    --accent:        #06B6D4;
+    --accent-2:      #10B981;
+    --gold:          #F59E0B;
+    --gold-light:    #FCD34D;
+
+    /* Gradients */
+    --grad-primary:  linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+    --grad-ocean:    linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%);
+    --grad-sunset:   linear-gradient(135deg, #F59E0B 0%, #EC4899 50%, #7C3AED 100%);
+    --grad-dark:     linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #111111 100%);
+    --grad-card:     linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    --grad-glass:    linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+
+    /* Backgrounds */
+    --bg:            var(--dark-bg);
+    --bg-2:          var(--dark-card);
+    --dark:          #0f0f0f;
+    --dark-2:        #1a1a1a;
+    --dark-3:        #222222;
+    --dark-4:        #2a2a2a;
+
+    /* Text */
+    --white:         #FFFFFF;
+    --text:          rgba(255,255,255,0.92);
+    --text-light:    rgba(255,255,255,0.60);
+    --text-muted:    rgba(255,255,255,0.35);
+
+    /* Borders */
+    --border:        rgba(255,255,255,0.08);
+    --border-light:  rgba(255,255,255,0.04);
+
+    /* Shadows */
+    --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
+    --shadow:     0 8px 32px rgba(0,0,0,0.5);
+    --shadow-lg:  0 20px 60px rgba(0,0,0,0.6);
+    --shadow-xl:  0 32px 80px rgba(0,0,0,0.7);
+    --shadow-glow:0 0 40px rgba(124,58,237,0.35);
+    --shadow-pink:0 8px 32px rgba(236,72,153,0.25);
+
+    /* Radius */
+    --r-sm:  8px;
+    --r:     14px;
+    --r-lg:  20px;
+    --r-xl:  28px;
+    --r-2xl: 40px;
+    --r-full:9999px;
+
+    /* Transitions */
+    --t:      all 0.3s cubic-bezier(0.4,0,0.2,1);
+    --t-slow: all 0.6s cubic-bezier(0.4,0,0.2,1);
+    --t-bounce:all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+
+    /* Typography */
+    --font:         'Inter', 'Segoe UI', system-ui, sans-serif;
+    --font-display: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+}

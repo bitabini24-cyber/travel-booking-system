@@ -1,0 +1,43 @@
+/* ===== ANIMATED PLANES ===== */
+.planes-layer{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+.plane-wrap{position:absolute;display:flex;align-items:center;will-change:transform}
+
+/* Plane 1 — large, left→right, top */
+.p1{top:13%;left:-340px;animation:flyR1 20s linear infinite 1s}
+.p1 .psvg{width:200px;filter:drop-shadow(0 0 12px rgba(167,139,250,1)) drop-shadow(0 0 30px rgba(236,72,153,.8))}
+.p1 .trail{width:260px;height:5px;background:linear-gradient(to left,rgba(167,139,250,1),rgba(236,72,153,.6),transparent);border-radius:6px;filter:blur(2px)}
+.p1 .trail2{width:160px;height:2px;margin-top:14px;background:linear-gradient(to left,rgba(167,139,250,.5),transparent);border-radius:4px;filter:blur(1px);position:absolute;top:50%}
+
+/* Plane 2 — medium, right→left, middle */
+.p2{top:46%;right:-300px;animation:flyL2 26s linear infinite 9s}
+.p2 .psvg{width:160px;transform:scaleX(-1);filter:drop-shadow(0 0 10px rgba(6,182,212,1)) drop-shadow(0 0 24px rgba(16,185,129,.8))}
+.p2 .trail{width:200px;height:4px;background:linear-gradient(to right,rgba(6,182,212,1),rgba(16,185,129,.6),transparent);border-radius:6px;filter:blur(1.5px);order:-1}
+
+/* Plane 3 — small, left→right, bottom */
+.p3{bottom:15%;left:-280px;animation:flyR3 32s linear infinite 16s}
+.p3 .psvg{width:130px;filter:drop-shadow(0 0 10px rgba(251,191,36,1)) drop-shadow(0 0 22px rgba(239,68,68,.8))}
+.p3 .trail{width:170px;height:3px;background:linear-gradient(to left,rgba(251,191,36,1),rgba(239,68,68,.6),transparent);border-radius:6px;filter:blur(1.5px)}
+
+@keyframes flyR1{
+  0%  {transform:translateX(0) translateY(0) rotate(-5deg);opacity:0}
+  4%  {opacity:1}
+  96% {opacity:1}
+  100%{transform:translateX(calc(100vw + 420px)) translateY(-90px) rotate(-5deg);opacity:0}
+}
+@keyframes flyL2{
+  0%  {transform:translateX(0) translateY(0) rotate(4deg);opacity:0}
+  4%  {opacity:1}
+  96% {opacity:1}
+  100%{transform:translateX(calc(-100vw - 380px)) translateY(70px) rotate(4deg);opacity:0}
+}
+@keyframes flyR3{
+  0%  {transform:translateX(0) translateY(0) rotate(-3deg);opacity:0}
+  4%  {opacity:1}
+  96% {opacity:1}
+  100%{transform:translateX(calc(100vw + 360px)) translateY(-50px) rotate(-3deg);opacity:0}
+}
+@media(max-width:768px){
+  .p2,.p3{display:none}
+  .p1 .psvg{width:130px}
+  .p1 .trail{width:160px}
+}

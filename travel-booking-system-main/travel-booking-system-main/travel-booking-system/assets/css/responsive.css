@@ -1,0 +1,60 @@
+/* ===== TABLET ===== */
+@media (max-width: 1100px) {
+    .stats-cards { grid-template-columns: repeat(2, 1fr); }
+    .hotel-detail-grid { grid-template-columns: 1fr; }
+    .booking-card { position: static; }
+    .dashboard-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; display: flex; flex-wrap: wrap; gap: 16px; padding: 20px; }
+    .sidebar-user { margin-bottom: 0; }
+    .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+    .sidebar-nav a { padding: 8px 14px; font-size: 0.82rem; }
+    .sidebar-divider { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .auth-container { grid-template-columns: 1fr; }
+    .auth-visual { display: none; }
+    .auth-form-wrap { padding: 60px 44px; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .container { padding: 0 18px; }
+    .section { padding: 70px 0; }
+    .nav-links {
+        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10,10,26,0.97); backdrop-filter: blur(20px);
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 12px; z-index: 999;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 1.2rem; padding: 14px 32px; }
+    .nav-toggle { display: flex; z-index: 1001; }
+    .search-box { flex-direction: column; border-radius: var(--r-xl); }
+    .search-divider { display: none; }
+    .search-field { min-width: unset; }
+    .hotels-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .stats-cards { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .dashboard-main { padding: 24px 18px; }
+    .hero h1 { letter-spacing: -1px; }
+    .page-hero h1 { font-size: 2.2rem; }
+    .hotel-detail-hero { height: 320px; }
+    .hotel-detail-hero-content h1 { font-size: 2rem; }
+    .data-table { font-size: 0.8rem; }
+    .data-table th, .data-table td { padding: 10px 14px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .section-title { letter-spacing: -0.5px; }
+    .auth-form-wrap { padding: 44px 28px; }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+    .stats-cards { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .modal { padding: 28px 22px; }
+    .hero h1 { font-size: 2.4rem; }
+    .booking-card { padding: 24px; }
+}
